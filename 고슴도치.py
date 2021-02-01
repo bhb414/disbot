@@ -4,13 +4,11 @@ import datetime
 import time
 import openpyxl
 import random
-
+import os
 
 
 client=discord.Client()
 
-
-token=("NzgwMDgxMTI5NTU4Mzc2NDcw.X7p5Kg.h6QQhmd6yt3BkulFZVrF2eWnmHE")
 
 
 @client.event
@@ -239,6 +237,6 @@ async def on_message(message):
 
 
 
+access_token =os.environ["BOT_TOKEN"]
 
-
-client.run(token)
+client.run(access_token)
