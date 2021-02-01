@@ -1,0 +1,6 @@
+discord.py==0.16.12
+asyncio==0.16.12
+import datetime==0.16.12
+time==0.16.12
+openpyxl==0.16.12
+random==0.16.12
