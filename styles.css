@@ -70,10 +70,17 @@
 a{
     position: absolute;
     right: 0px;
-    bottom: -100px;
+    bottom: -200px;
     color: white;
     background-color: rgb(0, 0, 0, 0.7);
     text-decoration: none;
     padding: 10px;
     border-radius: 20px;
+}
+
+#container p{
+    font-size: 12px;
+    position: absolute;
+    bottom: -100px;
+    color: rgb(0, 0, 0);
 }
