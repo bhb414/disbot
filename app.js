@@ -281,8 +281,13 @@ function onStartBtnClick(){
 }
 
 function output250(){
-    ctx.font = '48px godic';
-    ctx.fillText("미구현",0,canvas.height/2);
+    ctx.font = '18px godic';
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.save();
+    ctx.translate(20,20);
+    ctx.fillText(`미구현 입니다.`,0,canvas.height/4);
+    ctx.fillText(`750깡을 이용해 주십시오.`,0,canvas.height/1.5);
+    ctx.restore();
 }
 
 function output750(){
