@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia 시뮬레이터</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Mafia Simulater</h1>
+        <a href="simulKgame.html">윷놀이 연습하기</a>
+        <div id="contents">
+            <canvas id="notice-box"></canvas>
+            <div id="value-container">
+                <label for="try">시도 횟수</label>
+                <input type="text" readonly id="try" value="0"><br>
+                <label for="luna">사용한 루나</label>
+                <input type="text" readonly id="luna" value="0">
+            </div>
+            <div id="start-btn">
+                <button id="start">사용하기</button>
+            </div>
+
+            <div id="choice-box">
+                <button id="box250" class="btn-select">175깡</button>
+                <button id="box750" class="btn-unselect">750깡</button>  
+            </div>
+        </div>
+        <button id="reset">초기화</button>
+        <p>※뒤로가기를 누루면 인식이 안되는 버그가 있습니다. 버그 발생시 재접속하여 주시기바랍니다.</p>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
