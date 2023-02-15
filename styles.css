@@ -95,6 +95,11 @@ a{
 
 }
 
+#money{
+    width: fit-content;
+    max-width: 90px;
+}
+
 #reset{
     position: absolute;
     bottom: -65px;
