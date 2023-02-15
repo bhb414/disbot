@@ -121,3 +121,38 @@ a{
     float: left;
     width: 100px;
 }
+
+#banner1{
+    width: 200px;
+    padding: 20px;
+    font-size: 10px;
+    background-color: rgb(210, 255, 146);
+    position: absolute;
+    bottom: -300px;
+}
+
+#banner2{
+    width: 200px;
+    padding: 20px;
+    font-size: 10px;
+    background-color: rgb(0, 0, 0,0.7);
+    position: absolute;
+    bottom: -370px;
+}
+
+#banner3{
+    width: 200px;
+    padding: 20px;
+    font-size: 10px;
+    background-color: rgb(165, 229, 229);
+    position: absolute;
+    bottom: -440px;
+}
+
+.banner{
+    transition: background-color ease 1.5s;
+}
+
+.invert{
+    filter: invert(80%);
+}
