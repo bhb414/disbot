@@ -78,10 +78,17 @@ a{
     border-radius: 20px;
 }
 
-#container p{
+#notice{
     font-size: 12px;
     position: absolute;
     bottom: -100px;
+    color: rgb(0, 0, 0);
+}
+
+#bannerText{
+    font-size: 12px;
+    position: absolute;
+    bottom: -220px;
     color: rgb(0, 0, 0);
 }
 
