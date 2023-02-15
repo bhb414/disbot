@@ -54,7 +54,7 @@
             padding: 10px;
             border: 1px solid gray;
             text-align: justify;
-            font-size: 13px;
+            font-size: 11px;
         }
 
 
@@ -77,7 +77,7 @@
     <script>
         const aiText = ["ㅋㅋ","인간은 아직 AI에게 안됩니다?","이길 수 있을거라 생각하십니까? 휴먼?",
         "저는 빛의 속도로 누를 수 있답니다.", "당신이 이겼다면 그건 제가 봐드린겁니다.","혹시 아십니까? 이기면 좋은 일이 일어날지?",
-        "저는 심심이 따위와 다릅니다만.","남자인지 여자인지 물어보지 마세요. 좀;","신규직업 인공지능이 나온다면 그건 저일겁니다.",
+        "저는 심심이 따위와 다릅니다만.","남자인지 여자인지 물어보지 마세요. AI는 성별이 없답니다.;","신규직업 인공지능이 나온다면 그건 저일겁니다.",
         "ㅋㅋㅋㅋㅋㅋ","느려","이때다!","정신없쥬?","힝구링핑퐁ㅋㅋ"];
 
         const startBtn = document.getElementById("startBtn");
@@ -108,7 +108,7 @@
                 startBtn.style.color="#fff";
                 myBtn.style.backgroundColor="#9f9f9f";
                 mafiaBtn.style.backgroundColor="#9f9f9f";
-                showResult();
+                
             } else{
                 isStart=true;
                 startBtn.style.backgroundColor="gray";
@@ -140,7 +140,7 @@
             if(time==11){
                 resultBoard.innerText = `안녕하십니까.`;
             } else if(time==9){
-                resultBoard.innerText = `0초가 되었을때 상대가 선택되어있다면 승리합니다.`;
+                resultBoard.innerHTML = "0초에 AI가 선택되어있다면<br>당신은 승리합니다.";
             } else if(time==5){
                 let aiTalk = aiText[Math.floor(Math.random()*aiText.length)];
                 resultBoard.innerText = `${aiTalk}`;
@@ -148,6 +148,7 @@
                 resultBoard.innerText = `ㅅㄱ`;
             } else if(time <= 0){
                 onStartBtnClick();
+                showResult();
             }
         }
 
@@ -165,9 +166,9 @@
 
         function showResult(){
             if(mafiaDie){
-                resultBoard.innerText = "당신이 이겼습니다!";
+                resultBoard.innerText = "당신은 AI를 이겼습니다!";
             } else{
-                resultBoard.innerText = "AI가 이겼습니다.";
+                resultBoard.innerText = "AI가 당신을 이겼습니다.";
             }
         }
 
