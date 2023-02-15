@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia시뮬레이터</title>
+    <style>
+        #container{
+            margin: auto;
+            margin-top: 10px;
+            width: 80%;
+            max-width: 1000px;
+            padding: 10px;
+            border: 1px solid gray;
+            text-align: center;
+            position: relative;
+        }
+
+        #contents{
+            padding: 10px;
+            margin-top: 20px;
+            border-top: 1px solid gray;
+        }
+
+        #contents h2{
+            margin-bottom: 10px;
+        }
+
+        .btn{
+            width: 100px;
+            height: 100px;
+            background-color: #9f9f9f;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #startBtn{
+            width: 80px;
+            height: 30px;
+            margin-bottom: 20px;
+            background-color: #333333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #result{
+            width: 200px;
+            height: 50px;
+            margin: auto;
+            margin-top: 10px;
+            max-width: 1000px;
+            padding: 10px;
+            border: 1px solid gray;
+            text-align: justify;
+            font-size: 13px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Mafia Simulater</h1>
+        <div id="contents">
+            <h2 id="time">시간: 12초</h2>
+            <button id="startBtn">start</button>
+            <div id="choice-box">
+                <button id="enemy" class="btn">mafia</button>
+                <button id="me" class="btn">me</button>
+            </div>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const aiText = ["ㅋㅋ","인간은 아직 AI에게 안됩니다?","이길 수 있을거라 생각하십니까? 휴먼?",
+        "저는 빛의 속도로 누를 수 있답니다.", "당신이 이겼다면 그건 제가 봐드린겁니다.","혹시 아십니까? 이기면 좋은 일이 일어날지?",
+        "저는 심심이 따위와 다릅니다만.","남자인지 여자인지 물어보지 마세요. 좀;","신규직업 인공지능이 나온다면 그건 저일겁니다.",
+        "ㅋㅋㅋㅋㅋㅋ","느려","이때다!","정신없쥬?","힝구링핑퐁ㅋㅋ"];
+
+        const startBtn = document.getElementById("startBtn");
+        const mafiaBtn = document.getElementById("enemy");
+        const myBtn = document.getElementById("me");
+        const timer = document.getElementById("time");
+        const resultBoard = document.getElementById("result");
+
+        let timeInterval;
+        let aiTimeOut;
+
+        let aiRandomTime;
+
+        let time;
+        let isStart = false;
+
+        let mafiaDie=false;
+
+        function onStartBtnClick(){
+            time=12;
+            timer.innerText=`시간: ${time}초`;
+
+            if(isStart){
+                clearInterval(timeInterval);
+                clearTimeout(aiTimeOut);
+                isStart=false;
+                startBtn.style.backgroundColor="#333333";
+                startBtn.style.color="#fff";
+                myBtn.style.backgroundColor="#9f9f9f";
+                mafiaBtn.style.backgroundColor="#9f9f9f";
+                showResult();
+            } else{
+                isStart=true;
+                startBtn.style.backgroundColor="gray";
+                startBtn.style.color="red";
+                mafiaAi();
+                timeInterval = setInterval(onTimer,1000);
+            }
+        }
+
+        function onMafiaBtnClick(){
+            if(isStart){
+                mafiaBtn.style.backgroundColor="#8b1919";
+                myBtn.style.backgroundColor="#9f9f9f";
+                mafiaDie=true;
+            }
+        }
+
+        function onMyBtnClick(){
+            if(isStart){
+                mafiaBtn.style.backgroundColor="#9f9f9f";
+                myBtn.style.backgroundColor="#8b1919";
+                mafiaDie = false;
+            }
+        }
+
+        function onTimer(){
+            time-=1;
+            timer.innerText=`시간: ${time}초`;
+            if(time==11){
+                resultBoard.innerText = `안녕하십니까.`;
+            } else if(time==9){
+                resultBoard.innerText = `0초가 되었을때 상대가 선택되어있다면 승리합니다.`;
+            } else if(time==5){
+                let aiTalk = aiText[Math.floor(Math.random()*aiText.length)];
+                resultBoard.innerText = `${aiTalk}`;
+            } else if(time==1){
+                resultBoard.innerText = `ㅅㄱ`;
+            } else if(time <= 0){
+                onStartBtnClick();
+            }
+        }
+
+        function mafiaAi(){
+            onMyBtnClick();
+            if(time>=3){
+                aiRandomTime = Math.floor(Math.random()*1500);
+            } else if(time>=1){
+                aiRandomTime = Math.floor(Math.random()*200);
+            } else{
+                aiRandomTime = Math.floor(Math.random()*50);
+            }
+            aiTimeOut = setTimeout(mafiaAi,aiRandomTime);
+        }
+
+        function showResult(){
+            if(mafiaDie){
+                resultBoard.innerText = "당신이 이겼습니다!";
+            } else{
+                resultBoard.innerText = "AI가 이겼습니다.";
+            }
+        }
+
+        startBtn.addEventListener("click",onStartBtnClick);
+        mafiaBtn.addEventListener("click",onMafiaBtnClick);
+        myBtn.addEventListener("click",onMyBtnClick);
+
+
+</script>
+</body>
+</html>

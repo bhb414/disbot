@@ -1,0 +1,176 @@
+
+*{
+    margin: 0;
+}
+
+#container{
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+    max-width: 1000px;
+    padding: 10px;
+    border: 1px solid gray;
+    text-align: center;
+    position: relative;
+}
+
+#contents{
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 1px solid gray;
+}
+
+#notice-box{
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+#start-btn{
+    width: 100%;
+    text-align: center;
+}
+
+#start-btn button{
+    width: 100%;
+    max-width: 300px;
+    height: 50px;
+    margin-top: 20px;
+}
+
+
+#choice-box{
+    text-align: center;
+    margin: auto;
+}
+
+#choice-box button{
+    width: 44%;
+    max-width: 140px;
+    height: 30px;
+    margin: 15px 5px 0;
+}
+
+.btn-select{
+    background-color: rgba(111, 255, 67, 0.6);
+    border: none;
+    border-radius: 2px;
+}
+
+.btn-unselect{
+    background-color: rgba(120, 103, 103, 0.6);
+    border: none;
+    border-radius: 2px;
+}
+
+
+#yut{
+    position: absolute;
+    right: 0px;
+    bottom: -150px;
+    color: white;
+    background-color: rgba(139, 53, 3, 0.7);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#shot{
+    position: absolute;
+    right: 0px;
+    bottom: -200px;
+    color: rgb(150, 0, 0);
+    background-color: rgba(158, 158, 158, 0.7);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#notice{
+    font-size: 12px;
+    position: absolute;
+    bottom: -100px;
+    color: rgb(0, 0, 0);
+}
+
+#bannerText{
+    font-size: 12px;
+    position: absolute;
+    bottom: -220px;
+    color: rgb(0, 0, 0);
+}
+
+#try{
+    width: 30px;
+}
+
+#luna{
+    width: fit-content;
+    max-width: 90px;
+
+}
+
+#money{
+    width: fit-content;
+    max-width: 90px;
+}
+
+#reset{
+    position: absolute;
+    bottom: -65px;
+    right: 0px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(249, 126, 126, 0.8);
+    border: none;
+    border-radius: 50%;
+}
+
+#value-container{
+    margin: auto;
+    width: fit-content;
+    text-align: start;
+}
+
+#value-container label{
+    float: left;
+    width: 100px;
+}
+
+#banner1{
+    width: 200px;
+    padding: 20px;
+    font-size: 10px;
+    background-color: rgb(210, 255, 146);
+    position: absolute;
+    bottom: -300px;
+}
+
+#banner2{
+    width: 200px;
+    padding: 20px;
+    font-size: 10px;
+    background-color: rgb(0, 0, 0,0.7);
+    position: absolute;
+    bottom: -370px;
+}
+
+#banner3{
+    width: 200px;
+    padding: 20px;
+    font-size: 10px;
+    background-color: rgb(165, 229, 229);
+    position: absolute;
+    bottom: -440px;
+}
+
+.banner{
+    transition: background-color ease 1.5s;
+}
+
+.invert{
+    filter: invert(80%);
+}
