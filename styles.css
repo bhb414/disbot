@@ -66,11 +66,14 @@
     border-radius: 2px;
 }
 
+#linkNav{
+    position: absolute;
+    bottom: -150px;
+    right: 0px;
+}
 
 #yut{
-    position: absolute;
-    right: 0px;
-    bottom: -150px;
+    
     color: white;
     background-color: rgba(139, 53, 3, 0.7);
     text-decoration: none;
@@ -79,9 +82,6 @@
 }
 
 #shot{
-    position: absolute;
-    right: 0px;
-    bottom: -200px;
     color: rgb(150, 0, 0);
     background-color: rgba(158, 158, 158, 0.7);
     text-decoration: none;
