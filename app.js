@@ -546,6 +546,12 @@ const moneyInput = document.getElementById("money");
 const canvas = document.getElementById("notice-box");
 const ctx = canvas.getContext("2d");
 
+const banner = document.getElementsByClassName("banner");
+
+const BANNER_KEY = "invert";
+
+let isBannerInvert = false;
+
 let isSelect250 = true;
 let item250;
 let item750;
@@ -689,108 +695,29 @@ function randomItem250(){
     }
 }
 
-// function randomItem750(){
-//     let ratio = Math.random();
-    
-//     if(ratio<=0.026){
-//         item = items750[0];
-//     } else if(ratio<=0.052){
-//         item = items750[1];
-//     } else if(ratio<=0.078){
-//         item = items750[2];
-//     } else if(ratio<=0.104){
-//         item = items750[3];
-//     } else if(ratio<=0.13){
-//         item = items750[4];
-//     } else if(ratio<=0.156){
-//         item = items750[5];
-//     } else if(ratio<=0.182){
-//         item = items750[6];
-//     } else if(ratio<=0.202){
-//         item = items750[7];
-//     } else if(ratio<=0.212){
-//         item = items750[8];
-//     } else if(ratio<=0.222){
-//         item = items750[9];
-//     } else if(ratio<=0.232){
-//         item = items750[10];
-//     } else if(ratio<=0.242){
-//         item = items750[11];
-//     } else if(ratio<=0.252){
-//         item = items750[12];
-//     } else if(ratio<=0.262){
-//         item = items750[13];
-//     } else if(ratio<=0.272){
-//         item = items750[14];
-//     } else if(ratio<=0.282){
-//         item = items750[15];
-//     } else if(ratio<=0.292){
-//         item = items750[16];
-//     } else if(ratio<=0.302){
-//         item = items750[17];
-//     } else if(ratio<=0.312){
-//         item = items750[18];
-//     } else if(ratio<=0.322){
-//         item = items750[19];
-//     } else if(ratio<=0.332){
-//         item = items750[20];
-//     } else if(ratio<=0.342){
-//         item = items750[21];
-//     } else if(ratio<=0.352){
-//         item = items750[22];
-//     } else if(ratio<=0.362){
-//         item = items750[23];
-//     } else if(ratio<=0.372){
-//         item = items750[24];
-//     } else if(ratio<=0.382){
-//         item = items750[25];
-//     } else if(ratio<=0.392){
-//         item = items750[26];
-//     } else if(ratio<=0.398){
-//         item = items750[27];
-//     } else if(ratio<=0.408){
-//         item = items750[28];
-//     } else if(ratio<=0.418){
-//         item = items750[29];
-//     } else if(ratio<=0.428){
-//         item = items750[30];
-//     } else if(ratio<=0.438){
-//         item = items750[31];
-//     } else if(ratio<=0.448){
-//         item = items750[32];
-//     } else if(ratio<=0.458){
-//         item = items750[33];
-//     } else if(ratio<=0.468){
-//         item = items750[34];
-//     } else if(ratio<=0.478){
-//         item = items750[35];
-//     } else if(ratio<=0.484){
-//         item = items750[36];
-//     } else if(ratio<=0.49){
-//         item = items750[37];
-//     } else if(ratio<=0.533){
-//         item = items750[38];
-//     } else if(ratio<=0.576){
-//         item = items750[39];
-//     } else if(ratio<=0.619){
-//         item = items750[40];
-//     } else if(ratio<=0.662){
-//         item = items750[41];
-//     } else if(ratio<=0.705){
-//         item = items750[42];
-//     } else if(ratio<=0.748){
-//         item = items750[43];
-//     } else if(ratio<=0.813){
-//         item = items750[44];
-//     } else if(ratio<=0.944){
-//         item = items750[45];
-//     } else {
-//         item = items750[46];
-//     }
-// }
+function invertBanner(){
+
+    for(let i = 0; i<banner.length;i++){
+        let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+        if(isBannerInvert){
+            isBannerInvert=false;
+            banner[i].style.backgroundColor=randomColor;
+            //banner[i].classList.remove(BANNER_KEY);
+            
+        } else{
+            isBannerInvert=true;
+            //banner[i].classList.add(BANNER_KEY);
+            
+        }
+    }
+}
+
 
 
 btn250.addEventListener("click",onBox250Select);
 btn750.addEventListener("click",onBox750Select);
 startbtn.addEventListener("click",onStartBtnClick);
 resetBtn.addEventListener("click",onResetBtnClick);
+
+
+setInterval(invertBanner,1500);
