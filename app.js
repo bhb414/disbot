@@ -541,6 +541,7 @@ const resetBtn = document.getElementById("reset");
 
 const tryInput = document.getElementById("try");
 const lunaInput = document.getElementById("luna");
+const moneyInput = document.getElementById("money");
 
 const canvas = document.getElementById("notice-box");
 const ctx = canvas.getContext("2d");
@@ -550,6 +551,7 @@ let item250;
 let item750;
 let tryCount=0;
 let lunaCount=0;
+let moneyCount=0;
 
 let totalRatio1=0;
 let totalRatio2=0;
@@ -611,6 +613,9 @@ function onStartBtnClick(){
 
         tryCount+=1;
         tryInput.value=`${tryCount}`;
+
+        moneyCount+=2847;
+        moneyInput.value=`${moneyCount}`;
     } else{
         output750();
 
@@ -619,6 +624,9 @@ function onStartBtnClick(){
 
         tryCount+=1;
         tryInput.value=`${tryCount}`;
+
+        moneyCount+=12200;
+        moneyInput.value=`${moneyCount}`;
     }
 }
 
@@ -654,6 +662,9 @@ function onResetBtnClick(){
 
     tryCount=0;
     tryInput.value=`${tryCount}`;
+
+    moneyCount=0;
+    moneyInput.value=`${moneyCount}`;
 
     ctx.clearRect(0,0,canvas.width, canvas.height);
 }
