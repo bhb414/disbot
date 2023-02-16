@@ -106,14 +106,20 @@
 
 
         #choice-box{
-            text-align: center;
-            vertical-align: auto;
+            height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: space-around;
+            overflow: hidden;
+
         }
 
         #choice-box button{
             font-size: 11px;
-            display: inline-block;
-            width: 90%;
+            width: 80%;
+            
+            
         }
         
 
@@ -143,9 +149,9 @@
 
                 <div id="text-box">
                     <div id="choice-box">
-                        <button id="choice-01"></button>
-                        <button id="choice-02"></button>
-                        <button id="choice-03"></button>
+                        <button id="choice-01">어... 안녕..?</button>
+                        <!-- <button id="choice-02"></button>
+                        <button id="choice-03"></button> -->
                     </div>
                 </div>
             </div>
