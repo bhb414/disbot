@@ -50,6 +50,7 @@
             border: 1px solid gray;
             border-radius: 5px;
             background-color: rgb(255, 244, 252);
+            overflow: hidden;
             
         }
 
@@ -74,11 +75,11 @@
             text-align: start;
         }
 
-        #profile{
+        .profile{
             height: 50px;
         }
 
-        #profile img{
+        .profile img{
             height: 100%;
         }
 
@@ -100,7 +101,14 @@
             border: 1px solid #eee;
             border-radius: 5px;
             background-color: yellow;
+            opacity: 0;
+            animation: tsOpacity 1s;
+            animation-fill-mode: forwards;
+        }
 
+        @keyframes tsOpacity{
+            from {opacity: 0;}
+            to {opacity: 1;}
         }
 
 
@@ -112,16 +120,26 @@
             align-items: center;
             justify-content: space-around;
             overflow: hidden;
-
         }
+
+
 
         #choice-box button{
             font-size: 11px;
             width: 80%;
-            
-            
+            background-color: #bedcd9;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px gray;
+            opacity: 0;
+            animation: tsOpacity 1s;
+            animation-fill-mode: forwards;
         }
-        
+
+        #choice-box button:active{
+            background-color: #a7c2bf;
+            box-shadow: 1px 1px gray;
+        }
 
 
 
@@ -133,25 +151,20 @@
         <div id="contents">
             <div id="main">
                 <div id="main-screen">
-                    <div id="talk-box">
-                        <div id="profile">
+                    <!--<div id="talk-box">
+                        <div class="profile">
                             <img src="https://w.namu.la/s/aeae6255ae9edd5f5e243325fa31054fb10dd2216abdba1bc866fb273df5c7c87371b40f63656981785bd7aa2b9383e9a37c5751619ab52827ec1102853cdb98b40c677008f4a7bfe66e2a80ea62a21d3b939dc3730385ab6cac940a2adeb1ff" alt="도둑"><p id="profile-name"> 도둑</p>
                         </div>
                         <div class="talk-text-box">
-                            안녕하세요...
+                            하하..
                         </div>
-                        <div class="talk-text-box">
-                            누구시죠.?
-                        </div>
-                    </div>
+                    </div>-->
 
                 </div>
 
                 <div id="text-box">
                     <div id="choice-box">
-                        <button id="choice-01">어... 안녕..?</button>
-                        <!-- <button id="choice-02"></button>
-                        <button id="choice-03"></button> -->
+
                     </div>
                 </div>
             </div>
@@ -160,6 +173,93 @@
 
 
     <script>
+        const mainScreen = document.getElementById("main-screen");
+        const textBox = document.getElementById("textBox");
+        const choiceBox = document.getElementById("choice-box");
+        let talkBox;
+        let talkTextBoxList = [];
+
+        let btnLists=[
+        ["절대로 안돼.","뭘 훔친거야?"],["aaa"]
+        ];
+
+
+        let choice=0;
+
+        function createTalkBox(name, imgSource){
+            talkBox = document.createElement("div");
+            talkBox.setAttribute("id","talk-box");
+            mainScreen.appendChild(talkBox);
+            createProfile(name, imgSource);
+
+        }
+
+        function createProfile(name, imgSource){
+            let profile = document.createElement("div");
+            profile.classList.add("profile");
+            talkBox.appendChild(profile);
+
+            let profileImg = document.createElement("img");
+            profileImg.setAttribute("src",`${imgSource}`);
+            profile.appendChild(profileImg);
+            
+            let profileName = document.createElement("p");
+            profileName.setAttribute("id","profile-name");
+            profileName.innerText = `${name}`;
+            profile.appendChild(profileName);
+        }
+
+        function createTalkTextBox(text){
+            let talkTextBox = document.createElement("div");
+            talkTextBoxList.push(talkTextBox);
+            talkTextBox.classList.add("talk-text-box");
+            talkTextBox.innerText=`${text}`;
+            talkBox.appendChild(talkTextBox);
+        }
+
+        function destroyMainScreen(){
+            while(mainScreen.hasChildNodes()){
+                console.log(mainScreen.firstChild);
+                mainScreen.removeChild(mainScreen.firstChild);
+            }
+        }
+
+        function createChoiceBtn(num){
+            let btnList = btnLists[num];
+            for(let i = 0; i<btnList.length;i++){
+                const btn = document.createElement("button");
+                btn.innerText = `${btnList[i]}`;
+                btn.setAttribute("id",`button${i+1}`);
+                btn.addEventListener("click",onChoiceBtnClick);
+                choiceBox.appendChild(btn);
+                
+            }
+        }
+
+        function destroyChoiceBtn(){
+            while(choiceBox.hasChildNodes()){
+                choiceBox.removeChild(choiceBox.firstChild);
+            }
+
+        }
+        
+        function onChoiceBtnClick(event){
+            choice = event.target.id.split('button')[1];
+            console.log(choice);
+            
+            destroyChoiceBtn();
+        }
+
+        function delayBtnCreate(num){
+            createChoiceBtn(num);
+        }
+
+
+        createTalkBox("도둑","https://w.namu.la/s/aeae6255ae9edd5f5e243325fa31054fb10dd2216abdba1bc866fb273df5c7c87371b40f63656981785bd7aa2b9383e9a37c5751619ab52827ec1102853cdb98b40c677008f4a7bfe66e2a80ea62a21d3b939dc3730385ab6cac940a2adeb1ff");
+        createTalkTextBox("흠...");
+        createTalkTextBox("못 본걸로 해주면 안될까?");
+
+        setTimeout(()=>{delayBtnCreate(0)},500);
 
 
     </script>
