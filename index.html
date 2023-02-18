@@ -75,7 +75,6 @@
 
         #talk-box{
             text-align: start;
-            transition: all 2s ease-in;
         }
 
         .profile{
@@ -84,13 +83,26 @@
 
         .profile img{
             height: 100%;
+            opacity: 0;
+            animation: tsProfileImg 0.5s;
+            animation-fill-mode: forwards;
         }
+
+
 
         #profile-name{
             position: relative;
             display: inline;
             top: -10px;
             font-size: 12px;
+            animation: tsProfileImg 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes tsProfileImg{
+            from {opacity: 0;}
+            20% {opacity: 0;}
+            to {opacity: 1;}
         }
 
         .talk-text-box{
@@ -108,7 +120,7 @@
             animation: tsOpacity 1.5s;
             animation-fill-mode: forwards;
 
-            transition: transform 1s ease-in;
+
         }
 
         .talk-text-my{
@@ -127,7 +139,7 @@
             animation: tsOpacity 1.5s;
             animation-fill-mode: forwards;
 
-            transition: transform 1s ease-in;
+
         }
 
         @keyframes tsOpacity{
