@@ -50,7 +50,7 @@
             border: 1px solid gray;
             border-radius: 5px;
             background-color: rgb(255, 244, 252);
-            overflow: hidden;
+            overflow: auto;
             
         }
 
@@ -62,10 +62,12 @@
             border: 1px solid black;
             border-radius: 5px;
             background-color: rgb(225, 225, 225);
-            text-align: justify;
-            font-size: 11px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 15px;
+            
+            
         }
-
 
 
 
@@ -73,6 +75,7 @@
 
         #talk-box{
             text-align: start;
+            transition: all 2s ease-in;
         }
 
         .profile{
@@ -102,8 +105,29 @@
             border-radius: 5px;
             background-color: yellow;
             opacity: 0;
-            animation: tsOpacity 1s;
+            animation: tsOpacity 1.5s;
             animation-fill-mode: forwards;
+
+            transition: transform 1s ease-in;
+        }
+
+        .talk-text-my{
+            width: fit-content;
+            display: block;
+            text-align: start;
+            font-size: 11px;
+            padding: 5px;
+            padding-right: 10px;
+            margin: auto;
+            margin-right: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: yellow;
+            opacity: 0;
+            animation: tsOpacity 1.5s;
+            animation-fill-mode: forwards;
+
+            transition: transform 1s ease-in;
         }
 
         @keyframes tsOpacity{
@@ -132,13 +156,24 @@
             border-radius: 5px;
             box-shadow: 1px 1px gray;
             opacity: 0;
-            animation: tsOpacity 1s;
+            animation: tsOpacity 1.5s;
             animation-fill-mode: forwards;
         }
 
         #choice-box button:active{
             background-color: #a7c2bf;
             box-shadow: 1px 1px gray;
+        }
+
+        #choice-box p{
+            opacity: 0;
+            animation: tsOpacityRepeat 2s infinite;
+        }
+
+        @keyframes tsOpacityRepeat{
+            from {opacity: 0.1;}
+            50% {opacity: 1;}
+            to {opacity: 0.1;}
         }
 
 
@@ -173,18 +208,105 @@
 
 
     <script>
+        const theifImgSrc ="https://w.namu.la/s/aeae6255ae9edd5f5e243325fa31054fb10dd2216abdba1bc866fb273df5c7c87371b40f63656981785bd7aa2b9383e9a37c5751619ab52827ec1102853cdb98b40c677008f4a7bfe66e2a80ea62a21d3b939dc3730385ab6cac940a2adeb1ff";
+        const mafiaImgSrc = "https://w.namu.la/s/75c445dfceffe84e55c2dc61a7d1f65d538887e023e4e0e13db40b726a354a3f1d9d629071f9762155d5cf228615378aaffbd757c519dd9731403f8d1fec4c1a3132b34132a3e53454576a854c3540e130ff690143c4f36dd023154b36269514f1c02bda3841c3f9aa1be9d3a6319f83";
+
         const mainScreen = document.getElementById("main-screen");
-        const textBox = document.getElementById("textBox");
+        const textBox = document.getElementById("text-box");
         const choiceBox = document.getElementById("choice-box");
+
+        choiceBox.addEventListener("click",onTouchClick);
+        choiceBox.innerHTML = "<p>touch</p>";
+
         let talkBox;
         let talkTextBoxList = [];
+        
+        let NOWCHAPTER="chapter1";
+        let NOWTN = "tn0";
+        let NOWTC = "";
+        let nowTnCount = 0;
+        
+        let route;
 
-        let btnLists=[
-        ["절대로 안돼.","뭘 훔친거야?"],["aaa"]
+        let isFirstText = true;
+        let isCreatedChoice = false;
+
+        let talkBoxCount = 0;
+
+        const btnLists=[
+            {
+                btnIndex: 0,
+                btnText: ["좋아","내가 왜?"],
+
+                button0: "tn1",
+                button1: "tn2"
+            },
+            {
+                btnIndex: 1,
+                btnText: ["그런데 뭘 훔친거야?","아니, 거짓말인데;"],
+
+                button0: "tn3",
+                button1: "tn4"
+            }
         ];
+
+        const textList={
+            chapter1: {
+                tn0:{
+                    textprofileImg: theifImgSrc,
+                    textprofileName:"도둑",
+                    textContent: ["하하...","들켜버렸네.","못 본 척해주면 안될까?"],
+                    isNeedBtn: 0,
+                    nextTextNum: ""
+                },
+                tn1:{
+                    textprofileImg: theifImgSrc,
+                    textprofileName:"도둑",
+                    textContent: ["진짜지?","정말 고마워!"],
+                    isNeedBtn: 1,
+                    nextTextNum: ""
+                },
+                tn2:{
+                    textprofileImg: mafiaImgSrc,
+                    textprofileName:"마피아",
+                    textContent: ["도둑, 여기서 뭐하고 있는거지?","이녀석은 뭐야.","탕!"],
+                    isNeedBtn: -1,
+                    nextTextNum: "tn2"
+                },
+                tn3:{
+                    textprofileImg: theifImgSrc,
+                    textprofileName:"도둑",
+                    textContent: ["비밀로 해줘야돼...","내가 훔친건 바로","바니걸 의상이야..."],
+                    isNeedBtn: -1,
+                    nextTextNum: "tn2"
+                },
+                tn4:{
+                    textprofileImg: theifImgSrc,
+                    textprofileName:"도둑",
+                    textContent: ["...","혹시 원하는게 있어?..","뭐든지 다 들어줄게..."],
+                    isNeedBtn: -1,
+                    nextTextNum: "tn2"
+                },
+                tn7:{
+                    textprofileImg: theifImgSrc,
+                    textprofileName:"도둑",
+                    textContent: ["혹시 원하는게 있어?..","ssadf"],
+                    isNeedBtn: -1,
+                    nextTextNum: "tn2"
+                },
+
+                nextChapter: "chapter2"
+            }
+        };
+
+
+
+        let processBtn = 0;
 
 
         let choice=0;
+
+
 
         function createTalkBox(name, imgSource){
             talkBox = document.createElement("div");
@@ -215,6 +337,18 @@
             talkTextBox.classList.add("talk-text-box");
             talkTextBox.innerText=`${text}`;
             talkBox.appendChild(talkTextBox);
+
+            clearTextBox()
+        }
+
+        function createMyTalkTextBox(text){
+            let talkTextBox = document.createElement("div");
+            talkTextBoxList.push(talkTextBox);
+            talkTextBox.classList.add("talk-text-my");
+            talkTextBox.innerText=`${text}`;
+            talkBox.appendChild(talkTextBox);
+
+            clearTextBox()
         }
 
         function destroyMainScreen(){
@@ -225,11 +359,18 @@
         }
 
         function createChoiceBtn(num){
-            let btnList = btnLists[num];
+            choiceBox.removeEventListener("click",onTouchClick);
+            choiceBox.removeChild(choiceBox.firstChild);
+
+            isCreatedChoice = true;
+
+            processBtn = num;
+
+            let btnList = btnLists[num].btnText;
             for(let i = 0; i<btnList.length;i++){
                 const btn = document.createElement("button");
                 btn.innerText = `${btnList[i]}`;
-                btn.setAttribute("id",`button${i+1}`);
+                btn.setAttribute("id",`button${i}`);
                 btn.addEventListener("click",onChoiceBtnClick);
                 choiceBox.appendChild(btn);
                 
@@ -241,25 +382,114 @@
                 choiceBox.removeChild(choiceBox.firstChild);
             }
 
+
+
         }
         
         function onChoiceBtnClick(event){
-            choice = event.target.id.split('button')[1];
+            choice = event.target.id;
+            choiceIndex = choice.split("button")[1]
             console.log(choice);
             
+            createMyTalkTextBox(btnLists[processBtn].btnText[choiceIndex]);
+
+            
+            setNowTn();   <!--Tn변경-->
+            nowTnCount=0;
+            isFirstText=true;
+
             destroyChoiceBtn();
+            
+            setTimeout(()=>{
+                choiceBox.addEventListener("click",onTouchClick);
+                choiceBox.innerHTML = "<p>touch</p>";
+            },300);
         }
 
         function delayBtnCreate(num){
-            createChoiceBtn(num);
+            setTimeout(()=>{createChoiceBtn(num)},100);
+        }
+        
+
+        function delayTalkTextBoxCreate(text){
+            setTimeout(()=>{createTalkTextBox(text)},500);
         }
 
 
-        createTalkBox("도둑","https://w.namu.la/s/aeae6255ae9edd5f5e243325fa31054fb10dd2216abdba1bc866fb273df5c7c87371b40f63656981785bd7aa2b9383e9a37c5751619ab52827ec1102853cdb98b40c677008f4a7bfe66e2a80ea62a21d3b939dc3730385ab6cac940a2adeb1ff");
-        createTalkTextBox("흠...");
-        createTalkTextBox("못 본걸로 해주면 안될까?");
 
-        setTimeout(()=>{delayBtnCreate(0)},500);
+        function onTouchClick(){
+            route = setRoute();
+
+            if(isFirstText){
+                createTalkBox(route.textprofileName,route.textprofileImg);
+                isFirstText=false;
+            }
+
+            if(nowTnCount <route.textContent.length){
+                createTalkTextBox(route.textContent[nowTnCount]);
+                nowTnCount+=1;
+            } else if (route.isNeedBtn!=-1){
+                delayBtnCreate(route.isNeedBtn);
+            } else{
+                
+                
+            }
+            
+        }
+
+
+        function setRoute(){
+            let nowRoute = `${NOWCHAPTER}.${NOWTN}`;
+            let resultRoute = `var route = textList.${nowRoute}`;
+            eval(resultRoute);
+            return route;
+        }
+
+        function setChapter(){
+            NOWCHAPTER=1;
+        }
+
+        function setNowTn(){
+            NOWTN = setTn();
+            console.log(NOWTN);
+        }
+
+        function setTn(){
+            let nowButton = `btnLists[${processBtn}].${choice}`;
+            let resultButton = `var button = ${nowButton}`;
+            eval(resultButton);
+            
+            return button;
+        }
+
+        function clearTextBox(){
+            talkBoxCount+=1;
+            if(talkBoxCount<7){
+                console.log(talkBoxCount);
+            } else{
+                while(mainScreen.childElementCount!=1){
+                    mainScreen.removeChild(mainScreen.firstChild);
+                }
+                talkBoxCount=mainScreen.firstChild.childElementCount-1;
+                console.log(talkBoxCount);
+            }
+        }
+
+
+
+
+
+        
+
+
+
+
+
+
+        
+
+        
+        
 
 
     </script>
