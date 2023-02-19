@@ -46,12 +46,16 @@
             margin-top: 10px;
             margin-bottom: 20px;
             width: 90%;
-            height: 300px;
+            height: 290px;
             border: 1px solid gray;
             border-radius: 5px;
             background-color: rgb(255, 244, 252);
             overflow: auto;
-            
+            padding-bottom: 10px;
+        }
+
+        #main-screen::-webkit-scrollbar{
+            width: 0;
         }
 
         
@@ -86,6 +90,7 @@
             opacity: 0;
             animation: tsProfileImg 0.5s;
             animation-fill-mode: forwards;
+            border-radius: 50%;
         }
 
 
@@ -131,6 +136,7 @@
             padding: 5px;
             padding-right: 10px;
             margin: auto;
+            margin-top: 5px;
             margin-right: 10px;
             border: 1px solid #eee;
             border-radius: 5px;
@@ -163,7 +169,8 @@
         #choice-box button{
             font-size: 11px;
             width: 80%;
-            height: 25px;
+
+            padding: 6px 0;
             background-color: #bedcd9;
             border: none;
             border-radius: 5px;
@@ -223,6 +230,7 @@
     <script>
         const theifImgSrc ="https://w.namu.la/s/aeae6255ae9edd5f5e243325fa31054fb10dd2216abdba1bc866fb273df5c7c87371b40f63656981785bd7aa2b9383e9a37c5751619ab52827ec1102853cdb98b40c677008f4a7bfe66e2a80ea62a21d3b939dc3730385ab6cac940a2adeb1ff";
         const mafiaImgSrc = "https://w.namu.la/s/75c445dfceffe84e55c2dc61a7d1f65d538887e023e4e0e13db40b726a354a3f1d9d629071f9762155d5cf228615378aaffbd757c519dd9731403f8d1fec4c1a3132b34132a3e53454576a854c3540e130ff690143c4f36dd023154b36269514f1c02bda3841c3f9aa1be9d3a6319f83";
+        const witchImgSrc = "https://w.namu.la/s/f5383bff9ece2af5ac979443ae486b34b208fd00aca673fa61f1ac55d5b0f20d7ee0b30d099e9e8dc7dc21f1d1ede55f65042a8afc55dfb00c8e36cbf86cf554ef635d0b138a3abfda3fc7016cc878faca5733e5a23dea21186725ba3ee7f472";
 
         const mainScreen = document.getElementById("main-screen");
         const textBox = document.getElementById("text-box");
@@ -235,7 +243,7 @@
         let talkTextBoxList = [];
         
         let NOWCHAPTER="chapter1";
-        let NOWTN = "tn0";
+        let NOWTN = "tn1001";
         let NOWTC = "";
         let nowTnCount = 0;
         
@@ -249,64 +257,63 @@
         const btnLists=[
             {
                 btnIndex: 0,
-                btnText: ["좋아","내가 왜?"],
+                btnText: ["무슨 일이야?"],
 
-                button0: "tn1",
-                button1: "tn2"
+                button0: "tn1002",
             },
             {
                 btnIndex: 1,
-                btnText: ["그런데 뭘 훔친거야?","아니, 거짓말인데;"],
+                btnText: ["너는 미래를 볼 수 없어? 너는 마녀잖아"],
 
-                button0: "tn3",
-                button1: "tn4"
+                button0: "tn1003",
+            },
+            {
+                btnIndex: 2,
+                btnText: ["어? 혹시 말이야."],
+
+                button0: "tn1004",
+            },
+            {
+                btnIndex: 3,
+                btnText: ["예언자가 마법 도구를 쓰고 있는건 아닐까?"],
+
+                button0: "tn1005",
             }
         ];
 
         const textList={
             chapter1: {
-                tn0:{
-                    textprofileImg: theifImgSrc,
-                    textprofileName:"도둑",
-                    textContent: ["하하...","들켜버렸네.","못 본 척해주면 안될까?"],
+                tn1001:{
+                    textprofileImg: witchImgSrc,
+                    textprofileName:"마녀",
+                    textContent: ["으으으음....","으으음...","있잖아","예언자말이야.","어떻게 미래를 볼 수 있는 걸까?"],
                     isNeedBtn: 0,
-                    nextTextNum: ""
                 },
-                tn1:{
-                    textprofileImg: theifImgSrc,
-                    textprofileName:"도둑",
-                    textContent: ["진짜지?","정말 고마워!"],
+                tn1002:{
+                    textprofileImg: witchImgSrc,
+                    textprofileName:"마녀",
+                    textContent: ["예언자한테 저주를 걸려고 하면","미리 알아채고 피해버린단 말이지..."],
                     isNeedBtn: 1,
-                    nextTextNum: ""
                 },
-                tn2:{
-                    textprofileImg: mafiaImgSrc,
-                    textprofileName:"마피아",
-                    textContent: ["도둑, 여기서 뭐하고 있는거지?","이녀석은 뭐야.","탕!"],
-                    isNeedBtn: -1,
-                    nextTextNum: "tn2"
+                tn1003:{
+                    textprofileImg: witchImgSrc,
+                    textprofileName:"마녀",
+                    textContent: ["미래는 볼 수 있긴 한데","몇 초 뒤의 미래가 한계야.","하아~","좋은 방법이 없을까~?"],
+                    isNeedBtn: 2,
                 },
-                tn3:{
-                    textprofileImg: theifImgSrc,
-                    textprofileName:"도둑",
-                    textContent: ["비밀로 해줘야돼...","내가 훔친건 바로","바니걸 의상이야..."],
-                    isNeedBtn: -1,
-                    nextTextNum: "tn2"
+                tn1004:{
+                    textprofileImg: witchImgSrc,
+                    textprofileName:"마녀",
+                    textContent: ["응?"],
+                    isNeedBtn: 3,
                 },
-                tn4:{
-                    textprofileImg: theifImgSrc,
-                    textprofileName:"도둑",
-                    textContent: ["...","혹시 원하는게 있어?..","뭐든지 다 들어줄게..."],
-                    isNeedBtn: -1,
-                    nextTextNum: "tn2"
+                tn1005:{
+                    textprofileImg: witchImgSrc,
+                    textprofileName:"마녀",
+                    textContent: ["으음... 도구라...","앗!","그러고 보니 바니걸을 입던데!!","흐흣...","그걸 입으면 나도 미래를 볼수있는 건가?","고마워!","특별히 개구리로 만들지는 않을게!"],
+                    isNeedBtn: -2,
                 },
-                tn7:{
-                    textprofileImg: theifImgSrc,
-                    textprofileName:"도둑",
-                    textContent: ["혹시 원하는게 있어?..","ssadf"],
-                    isNeedBtn: -1,
-                    nextTextNum: "tn2"
-                },
+
 
                 nextChapter: "chapter2"
             }
@@ -348,20 +355,20 @@
             let talkTextBox = document.createElement("div");
             talkTextBoxList.push(talkTextBox);
             talkTextBox.classList.add("talk-text-box");
-            talkTextBox.innerText=`${text}`;
+            talkTextBox.innerHTML=text;
             talkBox.appendChild(talkTextBox);
 
-            clearTextBox()
+            scrollDown();
         }
 
         function createMyTalkTextBox(text){
             let talkTextBox = document.createElement("div");
             talkTextBoxList.push(talkTextBox);
             talkTextBox.classList.add("talk-text-my");
-            talkTextBox.innerText=`${text}`;
+            talkTextBox.innerHTML=`${text}`;
             talkBox.appendChild(talkTextBox);
 
-            clearTextBox()
+            scrollDown();
         }
 
         function destroyMainScreen(){
@@ -382,7 +389,7 @@
             let btnList = btnLists[num].btnText;
             for(let i = 0; i<btnList.length;i++){
                 const btn = document.createElement("button");
-                btn.innerText = `${btnList[i]}`;
+                btn.innerHTML = `${btnList[i]}`;
                 btn.setAttribute("id",`button${i}`);
                 btn.addEventListener("click",onChoiceBtnClick);
                 choiceBox.appendChild(btn);
@@ -486,6 +493,10 @@
                 talkBoxCount=mainScreen.firstChild.childElementCount-1;
                 console.log(talkBoxCount);
             }
+        }
+
+        function scrollDown(){
+            mainScreen.scrollTop=mainScreen.scrollHeight;
         }
 
 
