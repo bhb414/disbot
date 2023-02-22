@@ -1,214 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        #img1{
-            width: 128px;
-            height: 128px;
-            background-color: rgb(134, 251, 228);
-        }
-
-        #img2{
-            width: 128px;
-            height: 128px;
-            background-color: rgb(113, 124, 164);
-        }
-
-        #img3{
-            width: 128px;
-            height: 128px;
-            background-color: rgb(252, 213, 244);
-        }
-
-        #img4{
-            width: 128px;
-            height: 128px;
-            background-color: rgb(237, 240, 72);
-        }
-
-        #img5{
-            width: 128px;
-            height: 128px;
-            background-color: rgb(208, 243, 177);
-        }
-
-        #img6{
-            width: 128px;
-            height: 128px;
-            background-color: rgb(232, 173, 84);
-        }
-
-
-        body{
-            background-color: #1f1f1f;
-
-        }
-
-        .container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            perspective: 1000px;
-
-        }
-
-
-        .cube{
-            width: 128px;
-            height: 128px;
-            transform-style: preserve-3d;
-            transition: all 2s;
-            /* transform: rotateX(360deg); */
-            /* animation: rotate 3s infinite; */
-        }
-/* 
-        @keyframes rotate{
-            from {transform: rotateX(360deg);}
-            50% {transform: rotateX(0);}
-            to {transform: rotateY(360deg);}
-        } */
-
-        .cube div{
-            position: absolute;
-            top: 0;
-            left: 0;
-            text-align: center;
-            line-height: 120px;
-            color: rgb(0, 0, 0,0);
-            animation: color 1s forwards;
-        }
-
-        @keyframes color {
-            from{color:rgb(0, 0, 0,0)}
-            20% {color: rgb(0, 0, 0,0);}
-            to{color: rgb(0, 0, 0,1);}
-        }
-
-        .cube div:nth-child(1){
-            transform: translateZ(64px);
-        }
-
-        .cube div:nth-child(2){
-            transform: rotateX(90deg) translateZ(64px);
-        }
-
-        .cube div:nth-child(3){
-            transform: rotateX(180deg) translateZ(64px);
-        }
-
-        .cube div:nth-child(4){
-            transform: rotateX(-90deg) translateZ(64px);
-        }
-
-        .cube div:nth-child(5){
-            transform: rotateY(-90deg) translateZ(64px);
-        }
-
-        .cube div:nth-child(6){
-            transform: rotateY(90deg) translateZ(64px);
-        }
-
-
-    </style>
+    <title>꿈 사전</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="cube">
-            <div id="img1">Click !</div>
-            <div id="img2">기회</div>
-            <div id="img3">율</div>
-            <div id="img4">레몬</div>
-            <div id="img5">천재</div>
-            <div id="img6">바보</div>
+    <div id="container">
+        <div id="book">
+            <div id="book-cover-first" class="book"><b>DREAM</b></div>
+            <div id="book-corner" class="book"><b>DREAM</b></div>
+            <div id="book-cover-end" class="book"></div>
+            <div id="book-" class="book"></div>
+
         </div>
     </div>
-    <script>
-        const cube = document.querySelector(".cube");
-        const cubeDiv = document.querySelector(".cube div");
-        const img1 = document.getElementById("img1");
-        const img5 = document.getElementById("img5");
-        const img6 = document.getElementById("img6");
-        isOneClick = false;
-        let deg = 0;
 
-        function onCubeClick(){
-
-            
-            setTimeout(()=>{
-                img1.innerText = "썸머"
-                img5.innerText = "천재";
-                img6.innerText = "바보";
-            },400);
-
-            if(!isOneClick){
-                isOneClick = true;
-                deg = Math.floor(Math.random()*4)
-                console.log(deg);
-                if(deg==0){
-                    cube.style.transform = `rotateX(360deg)`;
-                } else if(deg==1){
-                    cube.style.transform = `rotateX(450deg)`;
-                } else if(deg==2){
-                    cube.style.transform = `rotateX(270deg)`;
-                } else{
-                    cube.style.transform = `rotateX(180deg)`;
-                }
-
-
-            } else{
-                cube.style.transform = `rotateX(0deg)`;
-                isOneClick = false;
-                let twoClickNum = Math.floor(Math.random()*2);
-                let love = Math.floor(Math.random()*10);
-
-                console.log(love);
-                if(love==2){
-                    setTimeout(()=>{
-                        img5.innerText = "돼지"; 
-                        img6.innerText = "돼지"; 
-                    },400);
-                } else if(deg==0 && love==4){
-                    setTimeout(()=>{
-                        img5.innerText = "사랑해";
-                        img6.innerText = "사랑해";   
-                    },400);
-                    
-                } else if(love==6){
-                    setTimeout(()=>{
-                        img5.innerText = "꼬맹이";
-                        img6.innerText = "꿀꿀";    
-                    },400);
-                    
-                } else if(love==9){
-                    setTimeout(()=>{
-                        img5.innerText = "=기회";
-                        img6.innerText = "모솔";    
-                    },400);
-                }
-
-                if (twoClickNum==0){
-                    cube.style.transform = `rotateY(270deg)`;
-                } else{
-                    cube.style.transform = `rotateY(-270deg)`;
-                }
-            }
-        }
-
-        cube.addEventListener("click",onCubeClick);
-
-
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
