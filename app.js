@@ -24,7 +24,7 @@ function createBookPage(){
 function onBookClick(){
     console.log(deg);
     deg+=90;
-    book.style.transform = `rotateY(${deg}deg) rotateX(30deg)`
+    book.style.transform = `rotateY(${deg}deg) rotateX(30deg) scale(0.5)`
 }
 
 const intervalPage = setInterval(createBookPage);
